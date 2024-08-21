@@ -5,7 +5,7 @@ using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class player : MonoBehaviour
+public class Player : MonoBehaviour
 {
     public int velocidade = 10;
     public Rigidbody rb;
@@ -23,7 +23,7 @@ public class player : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
 
-        Vector3 direcao = new UnityEngine.Vector3(x,0,y);
+        Vector3 direcao = new Vector3(x,0,y);
         rb.AddForce(direcao * velocidade * Time.deltaTime, ForceMode.Impulse);
     }
 }
