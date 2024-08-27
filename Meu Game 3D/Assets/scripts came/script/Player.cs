@@ -1,3 +1,4 @@
+using System;
 using Vector3 = UnityEngine.Vector3;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +22,15 @@ public class Player : MonoBehaviour
         TryGetComponent(out rb);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!noChao &&  collision.gameObject.tag == "Chão")
+        {
+            noChao = true;
+        } 
+            
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -31,14 +41,13 @@ public class Player : MonoBehaviour
         Vector3 direcao = new Vector3(x,0,y);
         rb.AddForce(direcao * velocidade * Time.deltaTime, ForceMode.Impulse);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && noChao)
         {
             rb.AddForce(Vector3.up * forcaPulo, ForceMode.Impulse);
+            noChao = false;
         }
         
         
-        
-
 
         if (transform.position.y <= -10)
         {
