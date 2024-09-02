@@ -12,14 +12,16 @@ public class Player : MonoBehaviour
 {
     public int velocidade = 10;
     public int forcaPulo = 7;
-    public bool noChao;
+    private bool noChao;
     
-    public Rigidbody rb;
+    private Rigidbody rb;
+    private AudioSource Source;
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("star");
         TryGetComponent(out rb);
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -34,7 +36,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Update");
+        Debug.Log("UPDATE");
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
 
@@ -43,6 +45,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && noChao)
         {
+           
             rb.AddForce(Vector3.up * forcaPulo, ForceMode.Impulse);
             noChao = false;
         }
