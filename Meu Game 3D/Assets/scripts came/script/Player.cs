@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("star");
         TryGetComponent(out rb);
-        
+        TryGetComponent(out Source);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && noChao)
         {
-           
+           Source.Play();
             rb.AddForce(Vector3.up * forcaPulo, ForceMode.Impulse);
             noChao = false;
         }
